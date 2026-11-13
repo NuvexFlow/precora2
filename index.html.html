@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto custa seu bolo de verdade? | Precora</title>
+<meta name="description" content="Teste grátis: calcule agora o custo real de um bolo ou doce e descubra se você está ganhando ou perdendo dinheiro.">
+
+<!-- ===== META PIXEL ===== -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '4563970113871343');
+fbq('track', 'PageView');
+</script>
+<!-- ================================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --berry:#4a2c17; --rasp:#b4713d; --pist:#f8c8d8; --sugar:#fff8f0; --ink:#4a2c17; --mute:#7a6350; --line:#ecd9c6; --cta:#d7263d; --cta-d:#a51b2e; --orange:#f08a24; --ok:#2e7d32;
+  --head:'Bricolage Grotesque','Trebuchet MS',sans-serif; --body:'DM Sans',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:17px/1.55 var(--body);color:var(--ink);background:var(--sugar);-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+h1,h2{font-family:var(--head);line-height:1.08;color:var(--berry)}
+h1{font-size:clamp(34px,8vw,52px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(26px,5.5vw,34px);font-weight:700;margin-bottom:14px}
+p{margin-bottom:14px}
+.hero{padding:44px 0 28px}
+.hero p.sub{font-size:19px;color:var(--mute);margin-top:16px}
+
+/* calculadora */
+.calc{background:#fff;border:2px solid var(--berry);border-radius:18px;padding:22px;margin:8px 0 36px;box-shadow:6px 6px 0 var(--pist)}
+.calc h2{font-size:24px;margin-bottom:4px}
+.calc .hint{color:var(--mute);font-size:15px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-size:14px;font-weight:700;margin-bottom:4px}
+.field input{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--sugar);color:var(--ink)}
+.field input:focus{outline:3px solid var(--pist);border-color:var(--berry)}
+.field.full{grid-column:1/-1}
+.result{margin-top:20px;background:var(--berry);color:#fff;border-radius:14px;padding:18px}
+.result .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.result .row:last-of-type{border:0}
+.result strong{font-family:var(--head);font-size:22px}
+.verdict{margin-top:12px;padding:12px 14px;border-radius:10px;font-weight:700;background:#e4f2e4;color:var(--ok)}
+.verdict.bad{background:#fde2e4;color:var(--cta-d)}
+
+/* seções */
+section{padding:34px 0}
+.list{list-style:none;padding:0}
+.list li{padding:12px 0 12px 34px;position:relative;border-bottom:1px solid var(--line)}
+.list li::before{content:"";position:absolute;left:4px;top:19px;width:16px;height:16px;border-radius:50%;background:var(--rasp)}
+.steps{display:grid;gap:12px}
+.step{border-left:4px solid var(--rasp);padding:4px 0 4px 16px}
+.step b{display:block;color:var(--berry)}
+.offer{background:var(--pist);border-radius:20px;padding:28px 22px;text-align:center}
+.offer .old{color:var(--orange);font-weight:700;font-size:20px;text-decoration:line-through}
+.offer .price{font-family:var(--head);font-size:56px;font-weight:800;color:var(--berry);line-height:1}
+.offer ul{list-style:none;padding:0;margin:18px 0;text-align:left;display:inline-block}
+.offer li{padding:3px 0}
+.btn{display:block;background:var(--cta);color:#fff;text-align:center;text-decoration:none;font:700 19px var(--head);padding:17px 20px;border-radius:14px;margin-top:18px;box-shadow:0 4px 0 var(--cta-d);animation:pulse 1.8s ease-in-out infinite}
+.btn small{display:block;font:500 14px var(--body);margin-top:3px;opacity:.95}
+.btn:hover,.btn:active{animation-play-state:paused}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--cta-d)}
+.btn:focus-visible{outline:4px solid var(--berry);outline-offset:3px}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.small{font-size:14px;color:var(--mute);margin-top:10px}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{font-weight:700;cursor:pointer}
+details p{margin:8px 0 0;color:var(--mute)}
+footer{padding:30px 0 50px;text-align:center;font-size:13px;color:var(--mute)}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.calc{padding:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <h1>Será que seu bolo está dando lucro ou prejuízo?</h1>
+  <p class="sub">Faça a conta agora, de graça, com os números da sua própria receita. Leva menos de um minuto.</p>
+</div></header>
+
+<main class="wrap">
+
+<div class="calc" id="calc">
+  <h2>Mini calculadora de custo</h2>
+  <p class="hint">Preencha com os dados de uma receita sua. Os valores são só uma sugestão.</p>
+  <div class="grid">
+    <div class="field"><label for="ing">Gasto com ingredientes (R$)</label><input id="ing" type="number" inputmode="decimal" min="0" step="0.01" value="45"></div>
+    <div class="field"><label for="emb">Embalagem (R$)</label><input id="emb" type="number" inputmode="decimal" min="0" step="0.01" value="8"></div>
+    <div class="field"><label for="hrs">Horas de trabalho</label><input id="hrs" type="number" inputmode="decimal" min="0" step="0.25" value="2"></div>
+    <div class="field"><label for="vh">Quanto vale sua hora (R$)</label><input id="vh" type="number" inputmode="decimal" min="0" step="0.5" value="20"></div>
+    <div class="field"><label for="rend">Quantas unidades rende</label><input id="rend" type="number" inputmode="numeric" min="1" step="1" value="1"></div>
+    <div class="field"><label for="taxa">Taxas (cartão, entrega) %</label><input id="taxa" type="number" inputmode="decimal" min="0" max="50" step="0.5" value="5"></div>
+    <div class="field"><label for="marg">Lucro que você quer %</label><input id="marg" type="number" inputmode="decimal" min="0" max="80" step="1" value="30"></div>
+    <div class="field"><label for="atual">Preço que você cobra hoje (R$)</label><input id="atual" type="number" inputmode="decimal" min="0" step="0.01" value="80"></div>
+  </div>
+
+  <div class="result" aria-live="polite">
+    <div class="row"><span>Custo real por unidade</span><strong id="custo">—</strong></div>
+    <div class="row"><span>Preço sugerido</span><strong id="sug">—</strong></div>
+    <div class="row"><span>Você ganha hoje, por unidade</span><strong id="lucro">—</strong></div>
+    <div class="verdict" id="verdict"></div>
+  </div>
+</div>
+
+<section>
+  <h2>Isso foi só uma receita</h2>
+  <p>O Precora guarda todas as suas receitas e refaz a conta sozinho quando um ingrediente sobe. Você não precisa montar planilha nem lembrar de nada.</p>
+  <a class="btn cta" style="margin-top:8px;margin-bottom:14px" href="https://pay.kiwify.com.br/enaH6AD">Quero parar de ter prejuízo</a>
+  <ul class="list">
+    <li>Cadastra ingredientes e receitas uma vez só</li>
+    <li>Soma embalagem, tempo de trabalho e taxas</li>
+    <li>Mostra o custo por unidade e o preço com a margem que você escolher</li>
+    <li>Funciona no navegador do celular, sem baixar nada</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Como usar</h2>
+  <div class="steps">
+    <div class="step"><b>Cadastre seus ingredientes e receitas</b>Informe as quantidades e o rendimento.</div>
+    <div class="step"><b>Complete os custos escondidos</b>Embalagem, tempo, valor da hora e taxas.</div>
+    <div class="step"><b>Compare e ajuste o preço</b>Veja o custo por unidade e defina a margem.</div>
+  </div>
+</section>
+
+<section>
+  <div class="offer" id="oferta">
+    <p class="old">De R$ 78</p>
+    <div class="price">R$ 29,90</div>
+    <p>ou 12x de R$ 3,70</p>
+    <ul>
+      <li>✓ App Precora completo, acesso vitalício</li>
+      <li>✓ Bônus: respostas prontas para “tá caro”</li>
+      <li>✓ Bônus: como reajustar o preço sem perder cliente</li>
+      <li>✓ Bônus: como precificar festas e encomendas grandes</li>
+    </ul>
+    <a class="btn cta" id="cta" href="https://pay.kiwify.com.br/enaH6AD">Quero garantir meu acesso</a>
+    <p class="small">Garantia de 7 dias. Se não gostar, devolvemos seu dinheiro.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Perguntas frequentes</h2>
+  <details><summary>É um curso?</summary><p>Não. É um mini-app para organizar receitas, calcular custos e simular preços.</p></details>
+  <details><summary>Preciso saber Excel?</summary><p>Não. Você preenche os dados da receita e o app faz as contas.</p></details>
+  <details><summary>Funciona no celular?</summary><p>Sim, direto no navegador, sem instalar nada.</p></details>
+  <details><summary>Como recebo o acesso?</summary><p>Por e-mail, logo após a confirmação do pagamento.</p></details>
+</section>
+
+</main>
+
+<footer>© 2026 Precora. Todos os direitos reservados.</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var brl=function(v){return isFinite(v)?v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}):'—'};
+  var tracked=false;
+  function calc(){
+    var n=function(id){return parseFloat($(id).value)||0};
+    var rend=Math.max(n('rend'),1);
+    var total=n('ing')+n('emb')+n('hrs')*n('vh');
+    var custo=total/rend;
+    var taxa=n('taxa')/100, marg=n('marg')/100;
+    var div=1-taxa-marg;
+    var sug=div>0.05?custo/div:NaN;
+    var atual=n('atual');
+    var lucro=atual*(1-taxa)-custo;
+    $('custo').textContent=brl(custo);
+    $('sug').textContent=brl(sug);
+    $('lucro').textContent=brl(lucro);
+    var v=$('verdict');
+    if(atual<=0){v.textContent='Informe o preço que você cobra hoje para ver o resultado.';v.className='verdict';}
+    else if(lucro<0){v.textContent='Atenção: nesse preço você tem prejuízo de '+brl(Math.abs(lucro))+' por unidade.';v.className='verdict bad';}
+    else if(isFinite(sug)&&atual<sug){v.textContent='Você lucra '+brl(lucro)+', mas abaixo da margem que queria. O preço ideal seria '+brl(sug)+'.';v.className='verdict bad';}
+    else{v.textContent='Bom sinal: nesse preço você lucra '+brl(lucro)+' por unidade.';v.className='verdict';}
+    if(!tracked&&window.fbq){tracked=true;fbq('trackCustom','UsouCalculadora');}
+  }
+  ['ing','emb','hrs','vh','rend','taxa','marg','atual'].forEach(function(id){$(id).addEventListener('input',calc)});
+  Array.prototype.forEach.call(document.querySelectorAll('.cta'),function(b){
+    b.addEventListener('click',function(){if(window.fbq){fbq('track','InitiateCheckout');}});
+  });
+  calc();tracked=false;
+})();
+</script>
+</body>
+</html>
